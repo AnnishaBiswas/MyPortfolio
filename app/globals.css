@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --gold: #C9A96E;
+  --gold-light: #E8D5B0;
+  --navy: #0B0F1A;
+  --surface: #131825;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Offset anchors so navbar doesn't cover headings */
+[id] {
+  scroll-margin-top: 56px;
+}
+
+.section-container {
+  @apply w-full max-w-4xl mx-auto px-4 sm:px-6 md:px-10 py-16 md:py-24;
+}
+
+.section-label {
+  @apply text-sm tracking-[0.18em] text-gold/60 uppercase mb-6 flex items-center gap-3;
+}
+
+.section-label::after {
+  content: '';
+  flex: 1;
+  height: 0.5px;
+  background: rgba(201, 169, 110, 0.2);
+}
+
+.grid-texture {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* Tailwind doesn't know about CSS vars — expose them as utilities */
+@layer utilities {
+  .text-gold {
+    color: var(--gold);
+  }
+  .text-goldLight {
+    color: var(--gold-light);
+  }
+  .bg-surface {
+    background-color: var(--surface);
+  }
+  .bg-navy {
+    background-color: var(--navy);
+  }
+  .border-gold {
+    border-color: var(--gold);
+  }
+
+  /* faint border used throughout components */
+  .border-faint {
+    border-color: rgba(201, 169, 110, 0.12);
+  }
+
+  /* primary bg colour — matches layout.tsx body class */
+  .bg-primary {
+    background-color: var(--navy);
+  }
+
+  /* cream text */
+  .text-cream {
+    color: #F5EDD8;
+  }
+
+  /* tabular-nums for the clock */
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* Pulse animation for the online status dot */
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
+
+.animate-pulse-dot {
+  animation: pulse-dot 2s ease-in-out infinite;
+}
